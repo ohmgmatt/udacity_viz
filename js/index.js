@@ -19,6 +19,17 @@ function draw(dataset) {
                           d3.max(dataset, function(d){ return d.height;})
                         ])
                 .range([padding, w - padding]);
+  var yScale = d3.scaleLinear()
+                .domain([d3.min(dataset, function(d){ return d.weight;}),
+                          d3.max(dataset, function(d){ return d.weight;})
+                        ])
+                .range([h-padding, padding]);
+
+  var rScale = d3.scaleLinear()
+                .domain([d3.min(dataset, function(d){ return d.HR;}),
+                          d3.max(dataset, function(d){ return d.HR;})
+                        ])
+                .range([1,10]);
 
   // Create the SVG
   var canvas = d3.select("body")
@@ -32,7 +43,7 @@ function draw(dataset) {
             .enter()
               .append("circle")
               .attr("cx", function(d) { return xScale(d.height); })
-              .attr("cy", function(d) { return d.weight; })
-              .attr("r", 2);
+              .attr("cy", function(d) { return yScale(d.weight); })
+              .attr("r", function(d) { return rScale(d.HR); });
 
 }
