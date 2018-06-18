@@ -3,13 +3,15 @@
   <head>
     <title>Baseball Performance</title>
     <link rel="stylesheet" href="css/index.css">
-    <script src="http://d3js.org/d3.v5.min.js"></script>
+    <script src="d3/d3.v3.js"></script>
+    <script src="d3/dimple.v2.0.0.min.js"></script>
   </head>
   <body>
     <h1>This is the project</h1>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        d3.csv("data/baseball_data.csv").then(draw);
+        d3.csv("data/baseball_data.csv", draw);
+        //d3.csv("data/baseball_data.csv").then(draw);
     </script>
   </body>
 </html>

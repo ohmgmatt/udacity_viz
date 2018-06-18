@@ -1,49 +1,28 @@
+function draw(data) {
 
-// Set the height and width
-var w = 500, h = 500;
-var padding = 10;
+  data.forEach(function(d) { d.HR = +d.HR;});
+  data.forEach(function(d) { d.avg = +d.avg;});
+  data.forEach(function(d) { d.height = +d.height;});
+  data.forEach(function(d) { d.weight = +d.weight;});
 
-// Edit the dataset
+  var padding = 75;
+  var w = 1000 - padding,
+      h = 400 - padding;
 
-// Create the draw function
-function draw(dataset) {
+  var svg = d3.select("body")
+              .append("svg")
+              .attr("width", w + padding)
+              .attr("height", h + padding)
+              .append("g")
+                .attr("class", "chart");
 
-  // Clean the dataset
-  dataset.forEach(function(d) { d.HR = +d.HR;});
-  dataset.forEach(function(d) { d.height = +d.height;});
-  dataset.forEach(function(d) { d.weight = +d.weight;});
+  var myChart = new dimple.chart(svg, data);
+  myChart.addCategoryAxis("x", "handedness");
+  myChart.addMeasureAxis("y", "HR");
+  myChart.addSeries(null, dimple.plot.bar)
+  myChart.draw();
 
-  // Create the scales
-  var xScale = d3.scaleLinear()
-                .domain([d3.min(dataset, function(d){ return d.height;}),
-                          d3.max(dataset, function(d){ return d.height;})
-                        ])
-                .range([padding, w - padding]);
-  var yScale = d3.scaleLinear()
-                .domain([d3.min(dataset, function(d){ return d.weight;}),
-                          d3.max(dataset, function(d){ return d.weight;})
-                        ])
-                .range([h-padding, padding]);
 
-  var rScale = d3.scaleLinear()
-                .domain([d3.min(dataset, function(d){ return d.HR;}),
-                          d3.max(dataset, function(d){ return d.HR;})
-                        ])
-                .range([1,10]);
 
-  // Create the SVG
-  var canvas = d3.select("body")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h);
-
-  //Create the points
-  var point = canvas.selectAll("circle")
-            .data(dataset)
-            .enter()
-              .append("circle")
-              .attr("cx", function(d) { return xScale(d.height); })
-              .attr("cy", function(d) { return yScale(d.weight); })
-              .attr("r", function(d) { return rScale(d.HR); });
 
 }
