@@ -9,20 +9,30 @@ function draw(data) {
   var w = 1000 - padding,
       h = 400 - padding;
 
-  var svg = d3.select("body")
+  var svg1 = d3.select("body")
               .append("svg")
               .attr("width", w + padding)
               .attr("height", h + padding)
               .append("g")
                 .attr("class", "chart");
 
-  var myChart = new dimple.chart(svg, data);
-  myChart.addCategoryAxis("x", "handedness");
-  myChart.addMeasureAxis("y", "HR");
-  myChart.addSeries(null, dimple.plot.bar)
-  myChart.draw();
+  var myChart1 = new dimple.chart(svg1, data);
+  myChart1.addCategoryAxis("x", "handedness");
+  myChart1.addMeasureAxis("y", "HR");
+  myChart1.addSeries(null, dimple.plot.bar)
+  myChart1.draw();
 
+  var svg2 = d3.select("body")
+            .append("svg")
+              .attr("width", w + padding)
+              .attr("height", h + padding)
+            .append("g")
+              .attr("class", "chart");
 
-
+  var myChart2 = new dimple.chart(svg2,data);
+  myChart2.addCategoryAxis("x", "handedness");
+  myChart2.addMeasureAxis("y", "avg");
+  myChart2.addSeries(null, dimple.plot.bar)
+  myChart2.draw();
 
 }
