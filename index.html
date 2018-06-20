@@ -5,12 +5,37 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="d3/d3.v3.js"></script>
     <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body>
+
+
     <h1>Performance of Baseball Players</h1>
-    <script type="text/javascript" src="js/index.js"></script>
+
+    <h2>Physical Appearances and Performance</h2>
+
+    <p class='paragraph'>
+    Here is some text. This is the paragraph that I want to insert
+    </p>
+
+    <div id ='chart1'></div>
+
+    <h2>How Handy Should You Be?</h2>
+
+    <p class='paragraph'>
+      This is space for the second paragraph.
+    </p>
+
+    <div id = 'chart2'></div>
+
+    <p class='end'>Some extra notes and information</p>
+
     <script type="text/javascript">
         d3.csv("data/baseball_data.csv", draw);
     </script>
+
+
+
   </body>
+
 </html>
