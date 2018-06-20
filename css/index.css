@@ -8,10 +8,16 @@ h2 {
 p.paragraph {
   color: grey;
 }
-div#chart1 {
+p.buttons1{
+  background:lightblue;
+}
+div.flex{
+  display: flex;
+}
+div.chart {
     max-width: 800px;
     max-height: 500px;
 }
-div#set1 {
-  max-width: 100px;
+div.buttons {
+  flex: 1;
 }
