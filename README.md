@@ -16,3 +16,6 @@ on how to work with strings into integers
 
 -- https://www.w3schools.com/js/js_if_else.asp
 If Else statements for JS
+
+-- https://github.com/PMSI-AlignAlytics/dimple/wiki/dimple.aggregateMethod
+For aggregating the data in a certain way
