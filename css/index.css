@@ -8,3 +8,10 @@ h2 {
 p.paragraph {
   color: grey;
 }
+div#chart1 {
+    max-width: 800px;
+    max-height: 500px;
+}
+div#set1 {
+  max-width: 100px;
+}
