@@ -8,9 +8,6 @@ h2 {
 p.paragraph {
   color: grey;
 }
-p.buttons1{
-  background:lightblue;
-}
 div.flex{
   display: flex;
 }
