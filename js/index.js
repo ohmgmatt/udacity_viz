@@ -34,7 +34,7 @@ function plot1(data) {
     myChart1.addSeries(null, dimple.plot.bar)
       .aggregate = dimple.aggregateMethod.avg;
     myChart1.setBounds(padding,padding, w - padding, h - padding);
-    myChart1.draw();
+    myChart1.draw(1500);
   }
   var physical = ['Height - HR', 'Height - AVG', 'Weight - HR', 'Weight - AVG']
 
@@ -80,16 +80,39 @@ function plot2(data) {
               .attr("class", "chart");
 
   var myChart2 = new dimple.chart(svg2,data);
-  myChart2.addCategoryAxis("x", "handedness");
-  myChart2.addMeasureAxis("y", "HR");
-  myChart2.addSeries(null, dimple.plot.bar)
-    .aggregate = dimple.aggregateMethod.avg;
-  myChart2.setBounds(padding,padding,w - padding,h - padding);
-  myChart2.draw();
-}
 
-function update(){
-  /*
+  function chart2(data, measure, aggr) {
+    myChart2.addCategoryAxis("x", "handedness");
+    myChart2.addMeasureAxis("y", measure);
+    myChart2.addSeries(null, dimple.plot.bar)
+      .aggregate = aggr;
+    myChart2.setBounds(padding,padding,w - padding,h - padding);
+    myChart2.draw(1500);
+  }
 
-  */
+  var handy = ["First", "Second", "Third"]
+
+  d3.select("#set2").selectAll("p")
+    .data(handy)
+    .enter()
+    .append("p")
+      .text(function(d) { return d; })
+      .attr("class","buttons2")
+    .on("click", function(d) {
+      if (d == "First") {
+        myChart2.svg.selectAll("*").remove();
+        myChart2 = new dimple.chart(svg2, data);
+        chart2(data, "HR", dimple.aggregateMethod.avg);
+      } else if (d == "Second") {
+        myChart2.svg.selectAll("*").remove();
+        myChart2 = new dimple.chart(svg2, data);
+        chart2(data, "avg", dimple.aggregateMethod.avg);
+      } else if ( d == "Third") {
+        myChart2.svg.selectAll("*").remove();
+        myChart2 = new dimple.chart(svg2, data);
+        chart2(data, "HR", dimple.aggregateMethod.count);
+      }
+    });
+  chart2(data, "HR", dimple.aggregateMethod.count);
+
 }
