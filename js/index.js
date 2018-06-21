@@ -11,7 +11,6 @@ function draw(data) {
   plot1(data);
   plot2(data);
 
-
 }
 
 // Function to draw the first charts where we compare how height
@@ -27,14 +26,16 @@ function plot1(data) {
                 .attr("id","firstChart");
 
   var myChart1 = new dimple.chart(svg1, data);
-  var xAxis = myChart1.addCategoryAxis("x", "height");
-  xAxis.addOrderRule("height");
-  var yAxis = myChart1.addMeasureAxis("y", "avg");
-  myChart1.addSeries(null, dimple.plot.bar)
-    .aggregate = dimple.aggregateMethod.avg;
-  myChart1.setBounds(padding,padding,w - padding,h - padding);
-  myChart1.draw();
 
+  function chart1(data, category, measure) {
+    var xAxis = myChart1.addCategoryAxis("x",category);
+      xAxis.addOrderRule(category);
+    var yAxis = myChart1.addMeasureAxis("y", measure);
+    myChart1.addSeries(null, dimple.plot.bar)
+      .aggregate = dimple.aggregateMethod.avg;
+    myChart1.setBounds(padding,padding, w - padding, h - padding);
+    myChart1.draw();
+  }
   var physical = ['Height - HR', 'Height - AVG', 'Weight - HR', 'Weight - AVG']
 
   d3.select("#set1").selectAll("p")
@@ -45,21 +46,26 @@ function plot1(data) {
       .attr("class","buttons1")
     .on("click",function(d) {
       if (d == 'Height - HR') {
-          d3.select("#firstChart").remove();
-            yAxis.measure = "HR";
-            myChart1.draw(1000);
+            myChart1.svg.selectAll('*').remove();
+            myChart1 = new dimple.chart(svg1, data);
+            chart1(data, "height", "HR");
           } else if (d == 'Height - AVG') {
-            yAxis.measure = "avg";
-            myChart1.draw(1000);
+            myChart1.svg.selectAll("*").remove();
+            myChart1 = new dimple.chart(svg1, data);
+            chart1(data, "height", "avg");
           } else if (d == "Weight - HR") {
-            yAxis.measure = "HR";
-            myChart1.draw(1000);
+            myChart1.svg.selectAll("*").remove();
+            myChart1 = new dimple.chart(svg1, data);
+            chart1(data, "weight", "HR");
           } else if (d == 'Weight - AVG') {
-            yAxis.measure ="avg";
-            myChart1.draw(1000);
-           }
+            myChart1.svg.selectAll("*").remove();
+            myChart1 = new dimple.chart(svg1,data);
+            chart1(data, "weight", "avg");
+          }
       d3.select(this).style("background","purple");
     });
+
+  chart1(data, "height", "HR");
 }
 
 // Function to draw the second chart where we compare how handedness
