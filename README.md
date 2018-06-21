@@ -19,3 +19,6 @@ If Else statements for JS
 
 -- https://github.com/PMSI-AlignAlytics/dimple/wiki/dimple.aggregateMethod
 For aggregating the data in a certain way
+
+-- https://stackoverflow.com/questions/27146622/remove-or-clear-previously-drawn-dimple-chart
+Removing a dimple chart
