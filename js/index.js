@@ -1,8 +1,8 @@
 //Establishing Global Variables
 
 var padding = 50;
-  var w = 750 - padding,
-      h = 450 - padding;
+  var w = 850 - padding,
+      h = 500 - padding;
 
 // This creates the larger draw function and is what is called by the
 // main HTML code.
@@ -34,14 +34,14 @@ function plot1(data) {
     myChart1.addSeries(null, dimple.plot.bar)
       .aggregate = dimple.aggregateMethod.avg;
     myChart1.setBounds(padding,padding, w - padding, h - padding);
-    myChart1.draw(1500);
+    myChart1.draw(750);
   }
   var physical = ['Height - HR', 'Height - AVG', 'Weight - HR', 'Weight - AVG']
 
-  d3.select("#set1").selectAll("p")
+  d3.select("#set1").selectAll("button")
     .data(physical)
     .enter()
-    .append("p")
+    .append("button")
       .text(function(d) { return d; })
       .attr("class","buttons1")
     .on("click",function(d) {
@@ -62,7 +62,6 @@ function plot1(data) {
             myChart1 = new dimple.chart(svg1,data);
             chart1(data, "weight", "avg");
           }
-      d3.select(this).style("background","purple");
     });
 
   chart1(data, "height", "HR");
@@ -87,27 +86,27 @@ function plot2(data) {
     myChart2.addSeries(null, dimple.plot.bar)
       .aggregate = aggr;
     myChart2.setBounds(padding,padding,w - padding,h - padding);
-    myChart2.draw(1500);
+    myChart2.draw(750);
   }
 
-  var handy = ["First", "Second", "Third"]
+  var handy = ["Amount of Players", "Average of Home Runs", "Average of Batting Averages"]
 
-  d3.select("#set2").selectAll("p")
+  d3.select("#set2").selectAll("button")
     .data(handy)
     .enter()
-    .append("p")
+    .append("button")
       .text(function(d) { return d; })
       .attr("class","buttons2")
     .on("click", function(d) {
-      if (d == "First") {
+      if (d == "Average of Home Runs") {
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
         chart2(data, "HR", dimple.aggregateMethod.avg);
-      } else if (d == "Second") {
+      } else if (d == "Average of Batting Averages") {
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
         chart2(data, "avg", dimple.aggregateMethod.avg);
-      } else if ( d == "Third") {
+      } else if ( d == "Amount of Players") {
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
         chart2(data, "HR", dimple.aggregateMethod.count);

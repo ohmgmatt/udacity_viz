@@ -1,12 +1,18 @@
+body{
+  padding-left: 100px;
+  padding-right: 100px;
+}
 h1 {
   font-family: Georgia, serif;
   text-align: center;
 }
 h2 {
   font-family: Arial, Helvetica, sans-serif;
+  padding-left: 25px;
 }
 p.paragraph {
   color: grey;
+  width:1000px;
 }
 div.flex{
   display: flex;
@@ -18,13 +24,27 @@ div.chart {
 div.buttons {
   flex: 1;
 }
-.buttons1 {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
+button {
+  display:block;
+  /*
+  background: #eb94d0;
+  background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -o-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: linear-gradient(to bottom, #eb94d0, #2079b0);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+
+  text-shadow: 3px 2px 1px #9daef5;
+    -webkit-box-shadow: 6px 5px 24px #666666;
+    -moz-box-shadow: 6px 5px 24px #666666;
+  box-shadow: 6px 5px 24px #666666;
+
+  font-family: Arial;
+  color: #fafafa;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  */
+  margin: 15px;
 }
