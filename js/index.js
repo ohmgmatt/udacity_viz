@@ -57,7 +57,7 @@ function plot1(data) {
     .enter()
     .append("button")
       .text(function(d) { return d; })
-      .attr("class", function (d, i) { return "buttons1 click_" + i;})
+      .attr("class", function (d, i) { return "buttons1 btn1_" + i;})
     .on("click",function(d) {
 
       d3.selectAll(".buttons1").attr("disabled",null);
@@ -100,7 +100,7 @@ function plot1(data) {
     });
 
   chart1(data, "height", "HR", "Height (inches)");
-  d3.select(".click_0").attr("disabled",true);
+  d3.select(".btn1_0").attr("disabled",true);
 }
 
 // Function to draw the second chart where we compare how handedness
@@ -142,9 +142,12 @@ function plot2(data) {
     .enter()
     .append("button")
       .text(function(d) { return d; })
-      .attr("class","buttons2")
+      .attr("class", function(d, i) { return "buttons2 btn2_" + i;})
     .on("click", function(d) {
       if (d == "Average of Home Runs") {
+
+        d3.selectAll(".buttons2").attr("disabled",null);
+        d3.select(this).attr("disabled",true);
 
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
@@ -170,5 +173,6 @@ function plot2(data) {
       d3.selectAll(".dimple-title").style("font-size","12px");
     });
   chart2(data, "HR", dimple.aggregateMethod.count);
+  d3.select(".btn2_0").attr("disabled",true);
 
 }
