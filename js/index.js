@@ -144,10 +144,11 @@ function plot2(data) {
       .text(function(d) { return d; })
       .attr("class", function(d, i) { return "buttons2 btn2_" + i;})
     .on("click", function(d) {
-      if (d == "Average of Home Runs") {
 
-        d3.selectAll(".buttons2").attr("disabled",null);
-        d3.select(this).attr("disabled",true);
+      d3.selectAll(".buttons2").attr("disabled",null);
+      d3.select(this).attr("disabled",true);
+      
+      if (d == "Average of Home Runs") {
 
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
