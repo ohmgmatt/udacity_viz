@@ -18,7 +18,7 @@ div.flex{
   display: flex;
 }
 div.chart {
-    max-width: 800px;
+    max-width: 900px;
     max-height: 500px;
 }
 div.buttons {
