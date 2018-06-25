@@ -21,8 +21,16 @@ div.chart {
     max-width: 900px;
     max-height: 500px;
 }
+.dimple-text {
+  font-size: 12px;
+}
 div.buttons {
   flex: 1;
+}
+text.chart-titles{
+  font-family: Georgia, serif;
+  font-weight:bold;
+  text-anchor: middle;
 }
 button {
   display:block;

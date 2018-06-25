@@ -9,6 +9,8 @@ var padding = 70;
 function draw(data) {
   plot1(data);
   plot2(data);
+
+  d3.selectAll(".dimple-title").style("font-size","12px");
 }
 
 // Function to draw the first charts where we compare how height
@@ -21,14 +23,15 @@ function plot1(data) {
               .attr("height", h + padding)
               .append("g")
                 .attr("class", "chart")
-                .attr("id","firstChart");
+                .attr("id","firstChart")
+
 
   var myChart1 = new dimple.chart(svg1, data);
+
 
   function chart1(data, category, measure, xtitle) {
     var xAxis = myChart1.addCategoryAxis("x",category);
       xAxis.addOrderRule(category);
-      xAxis.fontSize = "12px";
       xAxis.title = xtitle;
     var yAxis = myChart1.addMeasureAxis("y", measure);
       yAxis.showGridlines = true;
@@ -37,7 +40,15 @@ function plot1(data) {
       .aggregate = dimple.aggregateMethod.avg;
     myChart1.setBounds(padding,padding, w - padding, h - padding);
     myChart1.draw(750);
+
+    svg1.append("text")
+      .attr("x", myChart1._xPixels() + myChart1._widthPixels() / 2)
+      .attr("y", myChart1._yPixels() - 20)
+      .attr("class", "chart-titles")
+      .attr("id", "chart-title-1")
+      .text("Players Average Home Runs by Height");
   }
+
 
   var physical = ['Height - HR', 'Height - AVG', 'Weight - HR', 'Weight - AVG']
 
@@ -53,26 +64,34 @@ function plot1(data) {
             myChart1.svg.selectAll('*').remove();
             myChart1 = new dimple.chart(svg1, data);
             chart1(data, "height", "HR", "Height (inches)");
-
+            d3.select("#chart-title-1")
+              .text("Players Average Home Runs by Height");
           } else if (d == 'Height - AVG') {
 
             myChart1.svg.selectAll("*").remove();
             myChart1 = new dimple.chart(svg1, data);
             chart1(data, "height", "avg", "Height (inches)");
+            d3.select("#chart-title-1")
+              .text("Players Average of Batting Average by Height")
 
           } else if (d == "Weight - HR") {
 
             myChart1.svg.selectAll("*").remove();
             myChart1 = new dimple.chart(svg1, data);
             chart1(data, "weight", "HR", "Weight (lbs)");
+            d3.select("#chart-title-1")
+              .text("Players Average Home Runs by Weight")
 
           } else if (d == 'Weight - AVG') {
 
             myChart1.svg.selectAll("*").remove();
             myChart1 = new dimple.chart(svg1,data);
             chart1(data, "weight", "avg", "Weight (lbs)");
+            d3.select("#chart-title-1")
+              .text("Players Average of Batting Average by Weight")
 
           }
+        d3.selectAll(".dimple-title").style("font-size","12px");
     });
 
   chart1(data, "height", "HR", "Height (inches)");
@@ -93,7 +112,6 @@ function plot2(data) {
 
   function chart2(data, measure, aggr) {
     var xAxis = myChart2.addCategoryAxis("x", "handedness");
-      xAxis.fontSize = "12px";
       xAxis.title = "Handedness";
     var yAxis = myChart2.addMeasureAxis("y", measure);
       yAxis.tickFormat = ',.3f';
@@ -101,6 +119,14 @@ function plot2(data) {
       .aggregate = aggr;
     myChart2.setBounds(padding,padding,w - padding,h - padding);
     myChart2.draw(750);
+
+    svg2.append("text")
+      .attr("x", myChart2._xPixels() + myChart2._widthPixels() / 2)
+      .attr("y", myChart2._yPixels() - 20)
+      .attr("class", "chart-titles")
+      .attr("id", "chart-title-2")
+      .text("Number of Baseball Players by Handedness");
+
   }
 
   var handy = ["Amount of Players", "Average of Home Runs", "Average of Batting Averages"]
@@ -117,12 +143,16 @@ function plot2(data) {
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
         chart2(data, "HR", dimple.aggregateMethod.avg);
+        d3.select("#chart-title-2")
+          .text("Average of Baseball Players' Home Runs by Handedness");
 
       } else if (d == "Average of Batting Averages") {
 
         myChart2.svg.selectAll("*").remove();
         myChart2 = new dimple.chart(svg2, data);
         chart2(data, "avg", dimple.aggregateMethod.avg);
+        d3.select("#chart-title-2")
+          .text("Average of Baseball Players' Batting Average by Handedness");
 
       } else if ( d == "Amount of Players") {
 
@@ -131,6 +161,7 @@ function plot2(data) {
         chart2(data, "HR", dimple.aggregateMethod.count);
 
       }
+      d3.selectAll(".dimple-title").style("font-size","12px");
     });
   chart2(data, "HR", dimple.aggregateMethod.count);
 
