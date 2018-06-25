@@ -57,8 +57,12 @@ function plot1(data) {
     .enter()
     .append("button")
       .text(function(d) { return d; })
-      .attr("class","buttons1")
+      .attr("class", function (d, i) { return "buttons1 click_" + i;})
     .on("click",function(d) {
+
+      d3.selectAll(".buttons1").attr("disabled",null);
+      d3.select(this).attr("disabled",true);
+
       if (d == 'Height - HR') {
 
             myChart1.svg.selectAll('*').remove();
@@ -91,10 +95,12 @@ function plot1(data) {
               .text("Players Average of Batting Average by Weight")
 
           }
+
         d3.selectAll(".dimple-title").style("font-size","12px");
     });
 
   chart1(data, "height", "HR", "Height (inches)");
+  d3.select(".click_0").attr("disabled",true);
 }
 
 // Function to draw the second chart where we compare how handedness
