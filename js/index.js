@@ -28,7 +28,11 @@ function plot1(data) {
 
   var myChart1 = new dimple.chart(svg1, data);
 
-
+  // Create a callable function for the buttons below. Doing this, it becomes
+  // iterable since categoryFields is not mutable in dimple.js. This method
+  // allows some visual effects (having the same x axis with a changing y).
+  // This does remove the transition effect that changing the measure does,
+  // but it is a trade-off for functionality.
   function chart1(data, category, measure, xtitle, ytitle) {
     var xAxis = myChart1.addCategoryAxis("x",category);
       xAxis.addOrderRule(category);
@@ -42,6 +46,8 @@ function plot1(data) {
     myChart1.setBounds(padding,padding, w - padding, h - padding);
     myChart1.draw(750);
 
+    // Title append needs to be inside since it has to call on the charts pixels
+    // to be centered. Text is hardcoded since it is accessible by d3 to update.
     svg1.append("text")
       .attr("x", myChart1._xPixels() + myChart1._widthPixels() / 2)
       .attr("y", myChart1._yPixels() - 20)
@@ -53,6 +59,7 @@ function plot1(data) {
 
   var physical = ['Height - HR', 'Height - AVG', 'Weight - HR', 'Weight - AVG']
 
+  // Create the buttons for the first graph.
   d3.select("#set1").selectAll("button")
     .data(physical)
     .enter()
@@ -61,6 +68,7 @@ function plot1(data) {
       .attr("class", function (d, i) { return "buttons1 btn1_" + i;})
     .on("click",function(d) {
 
+      // Feature for buttons by enabling all then disabling the clicked on.
       d3.selectAll(".buttons1").attr("disabled",null);
       d3.select(this).attr("disabled",true);
 
@@ -100,6 +108,8 @@ function plot1(data) {
         d3.selectAll(".dimple-title").style("font-size","12px");
     });
 
+  // Calls the function initially outside of the buttons so it shows. This
+  // also disabled the first button since they are the same graph.
   chart1(data, "height", "HR", "Height (inches)", "Average of Home Runs");
   d3.select(".btn1_0").attr("disabled",true);
 }
@@ -117,6 +127,8 @@ function plot2(data) {
 
   var myChart2 = new dimple.chart(svg2,data);
 
+  // Same function structure as above. This is the most effective way to create
+  // the functionality to switch categories in the same svg.
   function chart2(data, measure, aggr) {
     var xAxis = myChart2.addCategoryAxis("x", "handedness");
       xAxis.addOrderRule(["L","B","R"]);
@@ -139,6 +151,7 @@ function plot2(data) {
 
   var handy = ["Amount of Players", "Average of Home Runs", "Average of Batting Averages"]
 
+  // Establishing the buttons. 
   d3.select("#set2").selectAll("button")
     .data(handy)
     .enter()
