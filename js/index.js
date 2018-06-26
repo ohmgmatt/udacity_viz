@@ -29,13 +29,14 @@ function plot1(data) {
   var myChart1 = new dimple.chart(svg1, data);
 
 
-  function chart1(data, category, measure, xtitle) {
+  function chart1(data, category, measure, xtitle, ytitle) {
     var xAxis = myChart1.addCategoryAxis("x",category);
       xAxis.addOrderRule(category);
       xAxis.title = xtitle;
     var yAxis = myChart1.addMeasureAxis("y", measure);
       yAxis.showGridlines = true;
       yAxis.tickFormat = ',.3f';
+      yAxis.title = ytitle;
     myChart1.addSeries(null, dimple.plot.bar)
       .aggregate = dimple.aggregateMethod.avg;
     myChart1.setBounds(padding,padding, w - padding, h - padding);
@@ -67,14 +68,14 @@ function plot1(data) {
 
             myChart1.svg.selectAll('*').remove();
             myChart1 = new dimple.chart(svg1, data);
-            chart1(data, "height", "HR", "Height (inches)");
+            chart1(data, "height", "HR", "Height (inches)", "Average of Home Runs");
             d3.select("#chart-title-1")
               .text("Players Average Home Runs by Height");
           } else if (d == 'Height - AVG') {
 
             myChart1.svg.selectAll("*").remove();
             myChart1 = new dimple.chart(svg1, data);
-            chart1(data, "height", "avg", "Height (inches)");
+            chart1(data, "height", "avg", "Height (inches)", "Average of Batting Average");
             d3.select("#chart-title-1")
               .text("Players Average of Batting Average by Height")
 
@@ -82,7 +83,7 @@ function plot1(data) {
 
             myChart1.svg.selectAll("*").remove();
             myChart1 = new dimple.chart(svg1, data);
-            chart1(data, "weight", "HR", "Weight (lbs)");
+            chart1(data, "weight", "HR", "Weight (lbs)", "Average of Home Runs");
             d3.select("#chart-title-1")
               .text("Players Average Home Runs by Weight")
 
@@ -90,7 +91,7 @@ function plot1(data) {
 
             myChart1.svg.selectAll("*").remove();
             myChart1 = new dimple.chart(svg1,data);
-            chart1(data, "weight", "avg", "Weight (lbs)");
+            chart1(data, "weight", "avg", "Weight (lbs)", "Average of Batting Average");
             d3.select("#chart-title-1")
               .text("Players Average of Batting Average by Weight")
 
@@ -99,7 +100,7 @@ function plot1(data) {
         d3.selectAll(".dimple-title").style("font-size","12px");
     });
 
-  chart1(data, "height", "HR", "Height (inches)");
+  chart1(data, "height", "HR", "Height (inches)", "Average of Home Runs");
   d3.select(".btn1_0").attr("disabled",true);
 }
 
@@ -147,7 +148,7 @@ function plot2(data) {
 
       d3.selectAll(".buttons2").attr("disabled",null);
       d3.select(this).attr("disabled",true);
-      
+
       if (d == "Average of Home Runs") {
 
         myChart2.svg.selectAll("*").remove();
