@@ -119,6 +119,7 @@ function plot2(data) {
 
   function chart2(data, measure, aggr) {
     var xAxis = myChart2.addCategoryAxis("x", "handedness");
+      xAxis.addOrderRule(["L","B","R"]);
       xAxis.title = "Handedness";
     var yAxis = myChart2.addMeasureAxis("y", measure);
       yAxis.tickFormat = ',.3f';
