@@ -5,6 +5,8 @@ The Data Visualization project for Udacity.
 
 First bl.ock: http://bl.ocks.org/ohmgmatt/07e725be31dcd30317fac335a4a0b24d
 
+Second bl.ock: http://bl.ocks.org/ohmgmatt/e3780509e22a598c405e342d289b4ba4
+
 
 ## Design
 During my initial exploration of the data, I thought that a scatter plot of
@@ -25,6 +27,10 @@ Gretchen B: Personally I'd like to see some visuals to show what graph I'm
 looking at when I click the buttons. When I click the buttons, I got confused as
 to which graph I was looking at. Could you color code the buttons somehow?
 
+Alyson Q: To make it consistent, make 'avg' on the y axis capitalized like
+everything else. Also, just stylistically, do you think you could order the
+second chart like "L, B, R" to match the hands?
+
 ## Resources
 -- https://github.com/d3/d3/blob/master/CHANGES.md  
 for documentation on V5.
@@ -40,3 +46,9 @@ For aggregating the data in a certain way
 
 --https://stackoverflow.com/questions/27146622/remove-or-clear-previously-drawn-dimple-chart  
 Removing a dimple chart
+
+--https://stackoverflow.com/questions/38525633/disable-a-button-using-d3-jquery-until-the-action-is-complete  
+Tips on how to disable a button using D3.
+
+--https://www.w3schools.com/css/css3_buttons.asp  
+Styling buttons
